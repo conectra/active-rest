@@ -1,5 +1,5 @@
 {
-    "name": "wubi/active-rest",
+    "name": "conectra/active-rest",
     "description": "This is a library to make CRUD's with your REST API. With this package, and some framework like Slim. You can abstract operations: POST,PUT,PATCH,DELETE,FIND,FINDONE at your Routes.",
     "type": "lib",
     "require": {
@@ -13,7 +13,7 @@
     "authors": [
         {
             "name": "Marcus Vinicius Mendes Goncalves",
-            "email": "marcus@wubi.com.br"
+            "email": "marcus@conectra.net.br"
         }
     ],
     "autoload": {
