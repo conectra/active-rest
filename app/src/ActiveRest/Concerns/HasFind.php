@@ -3,7 +3,7 @@
 namespace ActiveRest\Concerns;
 
 //dependencias
-use LazyFramework\Core\Helpers\Request\Find;
+use ActiveRest\Helpers\Find;
 //texception
 use Solis\Breaker\Abstractions\TExceptionAbstract;
 
