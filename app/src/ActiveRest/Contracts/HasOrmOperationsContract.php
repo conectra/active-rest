@@ -14,7 +14,8 @@ interface HasOrmOperationsContract extends
     HasModelContract,
     HasPostContract,
     HasPatchContract,
-    HasReplicateContract
+    HasReplicateContract,
+    HasTransactionContract
 {
 
 }

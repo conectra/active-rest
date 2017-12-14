@@ -17,5 +17,6 @@ trait HasOrmOperations
         HasPut,
         HasDel,
         HasLast,
-        HasReplicate;
+        HasReplicate,
+        HasTransaction;
 }
