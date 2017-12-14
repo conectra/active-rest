@@ -106,6 +106,7 @@ trait HasReplicate
     public function replicate(
         array $params
     ): array {
+        $this->beginTransaction();
         try {
             // Se os parâmetros não estão vazios carrega o Model
             if (empty($params)) {
@@ -130,10 +131,14 @@ trait HasReplicate
                 $this->replicateOne($param);
             }
 
-            return $this->getRetornoProcessamento();
+            $this->commitTransaction();
         } catch (TExceptionAbstract $e) {
-            return $e->toArray();
+            $this->rollbackTransaction();
+
+            $this->newThrowableFail($e);
         }
+
+        return $this->getRetornoProcessamento();
     }
 
 }

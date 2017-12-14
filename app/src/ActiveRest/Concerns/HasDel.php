@@ -106,6 +106,9 @@ trait HasDel
     public function del(
         array $params = []
     ): array {
+
+        $this->beginTransaction();
+
         try {
             // Se os parâmetros estão vazios e o Model está carregado a operação é um ACTIVE RECORD
             if (empty($params) && !empty($this->getModel())) {
@@ -127,9 +130,13 @@ trait HasDel
                 $this->delOne($param);
             }
 
-            return $this->getRetornoProcessamento();
-        } catch (TException $exception) {
-            return $exception->toArray();
+            $this->commitTransaction();
+        } catch (\Throwable $e) {
+            $this->rollbackTransaction();
+
+            $this->newThrowableFail($e);
         }
+
+        return $this->getRetornoProcessamento();
     }
 }

@@ -83,6 +83,18 @@ trait HasRetorno
     }
 
     /**
+     * Incrementa o contador do TOTAL e da FALHA
+     *
+     * @param $e
+     */
+    public function newThrowableFail(\Throwable $e)
+    {
+        $message = $e instanceof TExceptionAbstract ? $e->getError()->getEntry('message') : $e->getMessage();
+
+        $this->newFail($message ?? '500 - Internal Server Error');
+    }
+
+    /**
      * Incrementa o contador do TOTAL e do SUCESSO
      * @param string $message
      * @param string $extra
