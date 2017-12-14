@@ -109,6 +109,7 @@ trait HasPut
     public function update(
         array $params
     ): array {
+        $this->beginTransaction();
         try {
             // Se os parâmetros não estão vazios carrega o Model
             if (empty($params)) {
@@ -133,10 +134,14 @@ trait HasPut
                 $this->updateOne($param);
             }
 
-            //Retorno
-            return $this->getRetornoProcessamento();
-        } catch (TExceptionAbstract $e) {
-            return $e->toArray();
+            $this->commitTransaction();
+        } catch (\Throwable $e) {
+            $this->rollbackTransaction();
+
+            $this->newThrowableFail($e);
         }
+
+        //Retorno
+        return $this->getRetornoProcessamento();
     }
 }

@@ -124,6 +124,9 @@ trait HasPost
     public function post(
         array $params
     ): array {
+
+        $this->beginTransaction();
+
         try {
             // Se os parâmetros não estão vazios carrega o Model
             if (empty($params)) {
@@ -148,11 +151,15 @@ trait HasPost
                 $this->postOne($param);
             }
 
-            //Retorno
-            return $this->getRetornoProcessamento();
-        } catch (TExceptionAbstract $e) {
-            return $e->toArray();
+            $this->commitTransaction();
+        } catch (\Throwable $e) {
+            $this->rollbackTransaction();
+
+            $this->newThrowableFail($e);
         }
+
+        //Retorno
+        return $this->getRetornoProcessamento();
     }
 
 }
