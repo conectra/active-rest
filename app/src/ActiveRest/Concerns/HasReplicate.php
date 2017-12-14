@@ -132,7 +132,7 @@ trait HasReplicate
             }
 
             $this->commitTransaction();
-        } catch (TExceptionAbstract $e) {
+        } catch (\Throwable $e) {
             $this->rollbackTransaction();
 
             $this->newThrowableFail($e);
