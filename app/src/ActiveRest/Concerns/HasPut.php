@@ -26,11 +26,7 @@ trait HasPut
     public function beforeUpdate(
         array $param
     ): array {
-        try {
-            return $this->before($param);
-        } catch (TExceptionAbstract $e) {
-            return $e->toArray();
-        }
+        return $this->before($param);
     }
 
     /**
@@ -41,11 +37,7 @@ trait HasPut
     public function afterUpdate(
         $param
     ): array {
-        try {
-            return $this->after($param);
-        } catch (TExceptionAbstract $e) {
-            return $e->toArray();
-        }
+        return $this->after($param);
     }
 
     /**

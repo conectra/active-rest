@@ -30,12 +30,9 @@ trait HasReplicate
      */
     public function beforeReplicate(
         array $param
-    ): array {
-        try {
-            return $this->before($param);
-        } catch (TExceptionAbstract $e) {
-            return $e->toArray();
-        }
+    ): array
+    {
+        return $this->before($param);
     }
 
     /**
@@ -45,12 +42,9 @@ trait HasReplicate
      */
     public function afterReplicate(
         $param
-    ): array {
-        try {
-            return $this->after($param);
-        } catch (TExceptionAbstract $e) {
-            return $e->toArray();
-        }
+    ): array
+    {
+        return $this->after($param);
     }
 
 
@@ -60,7 +54,8 @@ trait HasReplicate
      */
     public function replicateOne(
         array $param
-    ) {
+    )
+    {
         // Chamada o método de interceptação beforeReplicate e valida o insert
         $beforeReplicate = $this->beforeReplicate($param);
 
@@ -105,7 +100,8 @@ trait HasReplicate
      */
     public function replicate(
         array $params
-    ): array {
+    ): array
+    {
         $this->beginTransaction();
         try {
             // Se os parâmetros não estão vazios carrega o Model

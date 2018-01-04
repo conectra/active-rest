@@ -51,8 +51,8 @@ trait HasRetorno
             //Inicia o array de mensagens para compor o detalhamento
             $this->aMessages = [];
 
-        } catch (TExceptionAbstract $e) {
-            return $e->toJson();
+        } catch (\Exception $e) {
+            return 'exception: '.$e->getMessage();
         }
     }
 
@@ -77,21 +77,21 @@ trait HasRetorno
                 'success' => false,
                 'message' => $message
             ];
-        } catch (TExceptionAbstract $e) {
-            return $e->toArray();
+        } catch (\Exception $e) {
+            return ['exception' => $e->getMessage()];
         }
     }
 
     /**
      * Incrementa o contador do TOTAL e da FALHA
-     *
-     * @param $e
+     * @param \Throwable $e
+     * @throws \Exception
      */
     public function newThrowableFail(\Throwable $e)
     {
         $message = $e instanceof TExceptionAbstract ? $e->getError()->getEntry('message') : $e->getMessage();
 
-        $this->newFail($message ?? '500 - Internal Server Error');
+        throw new \Exception($message, 500);
     }
 
     /**
@@ -123,8 +123,8 @@ trait HasRetorno
                 ],
                 $extra
             );
-        } catch (TExceptionAbstract $e) {
-            return $e->toArray();
+        } catch (\Exception $e) {
+            return ['exception' => $e->getMessage()];
         }
     }
 

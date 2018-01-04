@@ -28,11 +28,7 @@ trait HasPost
     public function beforePost(
         array $param
     ): array {
-        try {
-            return $this->before($param);
-        } catch (TExceptionAbstract $e) {
-            return $e->toArray();
-        }
+        return $this->before($param);
     }
 
     /**
@@ -43,11 +39,7 @@ trait HasPost
     public function afterPost(
         $param
     ): array {
-        try {
-            return $this->after($param);
-        } catch (TExceptionAbstract $e) {
-            return $e->toArray();
-        }
+        return $this->after($param);
     }
 
     /**

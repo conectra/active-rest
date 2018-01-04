@@ -29,8 +29,8 @@ trait HasLast
             }
 
             return [self::$MSG_LAST_FAIL];
-        } catch (TException $exception) {
-            return $exception->toArray();
+        } catch (\Throwable $e) {
+            $this->newThrowableFail($e);
         }
     }
 

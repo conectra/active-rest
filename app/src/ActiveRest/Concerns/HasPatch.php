@@ -27,11 +27,7 @@ trait HasPatch
     public function beforePatch(
         array $param
     ): array {
-        try {
-            return $this->before($param);
-        } catch (TExceptionAbstract $e) {
-            return $e->toArray();
-        }
+        return $this->before($param);
     }
 
     /**
@@ -42,11 +38,7 @@ trait HasPatch
     public function afterPatch(
         $param
     ): array {
-        try {
-            return $this->after($param);
-        } catch (TExceptionAbstract $e) {
-            return $e->toArray();
-        }
+        return $this->after($param);
     }
 
     /**
