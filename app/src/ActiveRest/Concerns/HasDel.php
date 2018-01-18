@@ -22,6 +22,11 @@ trait HasDel
     protected static $MSG_AFTER_DEL_FAIL = 'Falha ao executar as operacoes pos exclusao';
 
     /**
+     * @var bool
+     */
+    protected $softDelete;
+
+    /**
      * Método que é executado antes de Excluir um Registro
      * @param $param
      * @return array
@@ -71,8 +76,7 @@ trait HasDel
             );
 
             $this->setModel($instance);
-            $delete = $this->getModel()->delete();
-
+            $delete = $this->useSoftDelete() ? $this->getModel()->disable() : $this->getModel()->delete();
             //Status
             if (empty($delete)) {
                 // ADICIONA FALHA via HasPrepareRetorno
@@ -112,7 +116,7 @@ trait HasDel
         try {
             // Se os parâmetros estão vazios e o Model está carregado a operação é um ACTIVE RECORD
             if (empty($params) && !empty($this->getModel())) {
-                $bDelete = $this->getModel()->delete();
+                $bDelete = $this->useSoftDelete() ? $this->getModel()->disable() : $this->getModel()->delete();
                 return [
                     'status' => $bDelete,
                     'message' => $bDelete ? self::$MSG_DEL_SUCCESS : self::$MSG_DEL_FAIL
@@ -138,5 +142,13 @@ trait HasDel
         }
 
         return $this->getRetornoProcessamento();
+    }
+
+    /**
+     * @return bool
+     */
+    protected function useSoftDelete(): bool
+    {
+        return $this->softDelete && property_exists($this->getModel(), 'active');
     }
 }
