@@ -68,9 +68,11 @@ trait HasFind
                 'data' => []
             ];
 
+            $softDelete = property_exists($this, 'softDelete') ? $this->softDelete : false;
+
             // Realiza a consulta com base nos filtros informados
             $params = $this->beforeFind($params);
-            $params = Find::params(empty($params['param']) ? [] : $params['param']);
+            $params = Find::params(empty($params['param']) ? [] : $params['param'], $softDelete);
             if (!empty($params)) {
                 $aModels = $this->getModel()->select(
                     $params['arguments'],
