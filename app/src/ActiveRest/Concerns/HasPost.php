@@ -88,7 +88,7 @@ trait HasPost
 
             //Carrega a Chave do registro para retornar nos parametros
             $chave = JsonExtract::getArrayPrimaryKeys(
-                $afterPost['param'],
+                $afterPost['param']->toArray(),
                 JsonExtract::getPrimaryKeys(
                     $this->getModel()::$schema,
                     false
