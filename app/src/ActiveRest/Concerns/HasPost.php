@@ -102,7 +102,7 @@ trait HasPost
             );
         } elseif ($beforePost['success'] === false || empty($beforePost['param'])) {
             // Mensagem
-            $message = self::$MSG_POST_FAIL . ' - ' . self::$MSG_BEFORE_POST_FAIL;
+            $message = $beforePost['message'] ?? self::$MSG_POST_FAIL . ' - ' . self::$MSG_BEFORE_POST_FAIL;
             // ADICIONA FALHA via HasPrepareRetorno
             $this->newFail($message);
         }

@@ -87,7 +87,8 @@ trait HasPut
             $this->newSuccess(self::$MSG_UPDATE_SUCCESS);
         } elseif ($beforeUpdate['success'] === false || empty($beforeUpdate['param'])) {
             // Mensagem
-            $message = self::$MSG_UPDATE_FAIL . ' - ' . self::$MSG_BEFORE_UPDATE_FAIL;
+            $message = $beforePost['message'] ?? self::$MSG_POST_FAIL . ' - ' . self::$MSG_BEFORE_POST_FAIL;
+            // ADICIONA FALHA via HasPrepareRetorno
             $this->newFail($message);
         }
     }
