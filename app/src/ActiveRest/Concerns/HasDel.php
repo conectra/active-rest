@@ -96,7 +96,7 @@ trait HasDel
             $this->newSuccess(self::$MSG_DEL_SUCCESS);
         } elseif ($beforeDel['success'] === false || empty($beforeDel['param'])) {
             // Mensagem
-            $message = $beforePost['message'] ?? self::$MSG_POST_FAIL . ' - ' . self::$MSG_BEFORE_POST_FAIL;
+            $message = $beforePost['message'] ?? self::$MSG_DEL_FAIL . ' - ' . self::$MSG_BEFORE_DEL_FAIL;
             // ADICIONA FALHA via HasPrepareRetorno
             $this->newFail($message);
         }

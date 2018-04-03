@@ -88,7 +88,7 @@ trait HasPatch
             $this->newSuccess(self::$MSG_PATCH_SUCCESS);
         } elseif ($beforePatch['success'] === false || empty($beforePatch['param'])) {
             // Mensagem
-            $message = $beforePost['message'] ?? self::$MSG_POST_FAIL . ' - ' . self::$MSG_BEFORE_POST_FAIL;
+            $message = $beforePost['message'] ?? self::$MSG_PATCH_FAIL . ' - ' . self::$MSG_BEFORE_PATCH_FAIL;
             // ADICIONA FALHA via HasPrepareRetorno
             $this->newFail($message);
         }
