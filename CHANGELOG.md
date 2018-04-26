@@ -2,6 +2,24 @@
 
 Todas as modificações relevantes ao `active-rest` serão documentadas nesse arquivo seguindo o especificado em [KEEP CHANGELOG](http://keepachangelog.com/).
 
+## 0.0.10 - 2018-04-25
+@author marcuswubi
+
+## Fixed
+- Adicionei no helper que parseia a consulta, a ponderação para cascatear o withProperties.
+
+## 0.0.9 - 2018-04-03
+@author petry
+
+## Fixed
+- Corrigidas mensagens de retorno no HasDel, HasPatch e HasPut.
+
+## 0.0.8 - 2018-04-02
+@author petry
+
+## Updated
+- Modifiquei o tratamento do retorno do beforeInsert para as alções de del, patch, post e put.
+
 ## 0.0.7 - 2018-03-17
 @author marcuswubi
 
