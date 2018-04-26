@@ -11,11 +11,9 @@ final class Find
 
     /**
      * @param array $params
-     * @param bool  $softDelete
-     *
      * @return array
      */
-    public static function params($params = [], $softDelete = false)
+    public static function params($params = [])
     {
         // argumento arguments a ser utilizado no active record method find
         $arguments = [];
@@ -34,13 +32,6 @@ final class Find
                 ],
             ];
 
-            if ($softDelete) {
-                $arguments[] = [
-                    'column' => 'active',
-                    'value'  => true
-                ];
-            }
-
             return [
                 'options'   => $options,
                 'arguments' => $arguments,
@@ -53,13 +44,6 @@ final class Find
             ) && is_array($params['arguments'])
         ) {
             $arguments = $params['arguments'];
-
-            if ($softDelete) {
-                $arguments[] = [
-                    'column' => 'active',
-                    'value'  => true
-                ];
-            }
         }
 
         if (array_key_exists(
@@ -135,6 +119,13 @@ final class Find
                 $params['options']
             )) {
                 $options['withDependencies'] = $params['options']['withDependencies'];
+            }
+
+            if (array_key_exists(
+                'withProperties',
+                $params['options']
+            )) {
+                $options['withProperties'] = $params['options']['withProperties'];
             }
         }
 
