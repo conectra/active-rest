@@ -82,7 +82,7 @@ final class Find
             )) {
                 $params['options']['orderBy'] = count(
                     array_filter(
-                        array_keys($params['options']),
+                        array_keys($params['options']['orderBy']),
                         'is_string'
                     )
                 ) > 0 ? [$params['options']['orderBy']] : $params['options']['orderBy'];
