@@ -73,7 +73,7 @@ trait HasPatch
 
             //Valida Atualização
             if (empty($patched)) {
-                $this->newFail(self::$MSG_POST_FAIL);
+                $this->newSuccess(self::$MSG_PATCH_SUCCESS);
                 return;
             }
 
